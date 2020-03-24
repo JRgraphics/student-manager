@@ -1,9 +1,10 @@
-import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, FETCH_STUDENT_ERROR } from "./studentTypes"
+import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, FETCH_STUDENT_ERROR, SEARCH_STUDENT } from "./studentTypes"
 
 const initialState = {
     loading: false,
     student: [],
-    error: ''
+    error: '',
+    search_term: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +28,12 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 student: [],
                 error: action.payload
+            }
+
+        case SEARCH_STUDENT:
+            return {
+                ...state,
+                search_term: action.payload
             }
 
         default: return state;

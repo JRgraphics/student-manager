@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { fetchStudents } from '../../redux';
+import { connect, useDispatch } from 'react-redux';
+import { fetchStudents, searchStudent } from '../../redux';
 import './StudentTable.sass';
 import StudentTableItem from './StudentTableItem';
 
 function StudentTable({ studentData, fetchStudents}) {
     useEffect(() => {
         fetchStudents()
-    }, [])
+    }, []);
+    const dispatch = useDispatch();
+
     const headers = ["Name", "Address", "Email", "Phone", "Birthday"];
     return studentData.loading ? (
         <h2>Loading...</h2>
@@ -16,6 +18,9 @@ function StudentTable({ studentData, fetchStudents}) {
     ) : (
         <div>
             <h2>Students</h2>
+            <input type="text" placeholder="Search.." onChange={e => {
+                dispatch(searchStudent(e.target.value));
+                }} />
             <table className="table table-dark table-hover p-0 m-0">
                 <tbody>
                     <tr className="thead">
@@ -28,8 +33,8 @@ function StudentTable({ studentData, fetchStudents}) {
                     {
                     studentData &&
                     studentData.student &&
-                    studentData.student.map((value, index) => 
-                        <StudentTableItem value={value} index={index} />
+                    studentData.student.filter(student => student.name.toLowerCase().includes(studentData.search_term.toLowerCase())).map((value, index) =>
+                        <StudentTableItem value={value} index={index}/>
                         )
                      }
                 </tbody>

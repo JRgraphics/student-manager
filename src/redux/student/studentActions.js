@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, FETCH_STUDENT_ERROR } from "./studentTypes"
+import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, FETCH_STUDENT_ERROR, SEARCH_STUDENT } from "./studentTypes"
 
 export const fetchStudentsRequest = () => {
     return {
@@ -34,5 +34,12 @@ export const fetchStudents = () => {
             const errorMsg = error.message;
             dispatch(fetchStudentsError(errorMsg));
         })
+    }
+}
+
+export const searchStudent = term => {
+    return {
+        type: SEARCH_STUDENT,
+        payload: term
     }
 }
