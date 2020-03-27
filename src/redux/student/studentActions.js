@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, FETCH_STUDENT_ERROR, SEARCH_STUDENT } from "./studentTypes"
+import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, 
+    FETCH_STUDENT_ERROR, SEARCH_STUDENT, OPEN_STUDENT_POPUP, CLOSE_STUDENT_POPUP } from "./studentTypes"
 
 export const fetchStudentsRequest = () => {
     return {
@@ -41,5 +42,18 @@ export const searchStudent = term => {
     return {
         type: SEARCH_STUDENT,
         payload: term
+    }
+}
+
+export const openStudentPopup = student => {
+    return {
+        type: OPEN_STUDENT_POPUP,
+        payload: student
+    }
+}
+
+export const closeStudentPopup = () => {
+    return {
+        type: CLOSE_STUDENT_POPUP
     }
 }

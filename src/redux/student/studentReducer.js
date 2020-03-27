@@ -1,10 +1,13 @@
-import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, FETCH_STUDENT_ERROR, SEARCH_STUDENT } from "./studentTypes"
+import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, 
+    FETCH_STUDENT_ERROR, SEARCH_STUDENT, OPEN_STUDENT_POPUP, CLOSE_STUDENT_POPUP } from "./studentTypes"
 
 const initialState = {
     loading: false,
     student: [],
     error: '',
-    search_term: ''
+    search_term: '',
+    student_popup_status: false,
+    student_popup_target: {}
 }
 
 const reducer = (state = initialState, action) => {
@@ -35,6 +38,19 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 search_term: action.payload
             }
+
+        case OPEN_STUDENT_POPUP:
+        return {
+            ...state,
+            student_popup_status: true,
+            student_popup_target: action.payload
+        }
+
+        case CLOSE_STUDENT_POPUP:
+        return {
+            ...state,
+            student_popup_status: false
+        }
 
         default: return state;
     }
