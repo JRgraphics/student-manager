@@ -1,8 +1,7 @@
-import { ADD_STUDENT } from "./studentFormTypes"
+import { CLEAR_STUDENTFORM } from './studentFormTypes';
 
-export const addStudent = student => {
+export const clearStudentForm = () => {
     return {
-        type: ADD_STUDENT,
-        payload: student
+        type: CLEAR_STUDENTFORM
     }
 }

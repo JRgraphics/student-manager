@@ -1,1 +1,2 @@
-export const ADD_STUDENT = 'ADD_STUDENT';
+
+export const CLEAR_STUDENTFORM = 'CLEAR_STUDENTFORM';

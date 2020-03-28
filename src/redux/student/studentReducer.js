@@ -1,5 +1,6 @@
-import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, 
-    FETCH_STUDENT_ERROR, SEARCH_STUDENT, OPEN_STUDENT_POPUP, CLOSE_STUDENT_POPUP } from "./studentTypes"
+import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, FETCH_STUDENT_ERROR,
+    ADD_STUDENT_REQUEST, ADD_STUDENT_SUCCESS, ADD_STUDENT_ERROR,
+     SEARCH_STUDENT, OPEN_ADD_STUDENT_POPUP, CLOSE_ADD_STUDENT_POPUP, OPEN_STUDENT_POPUP, CLOSE_STUDENT_POPUP } from "./studentTypes";
 
 const initialState = {
     loading: false,
@@ -7,7 +8,10 @@ const initialState = {
     error: '',
     search_term: '',
     student_popup_status: false,
-    student_popup_target: {}
+    student_popup_target: {},
+    add_student_display: false,
+    add_student_loading: false,
+    add_student_error: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -33,24 +37,56 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             }
 
+        case ADD_STUDENT_REQUEST:
+            return {
+                ...state,
+                add_student_loading: true
+            }
+        
+        case ADD_STUDENT_SUCCESS:
+            return {
+                ...state,
+                add_student_loading: false,
+                add_student_display: false,  
+            }
+        
+        case ADD_STUDENT_ERROR:
+            return {
+                ...state,
+                add_student_loading: false,
+                add_student_error: action.payload
+            }
+
         case SEARCH_STUDENT:
             return {
                 ...state,
                 search_term: action.payload
             }
 
+        case OPEN_ADD_STUDENT_POPUP:
+            return {
+                ...state,
+                add_student_display: true,
+            }
+
+        case CLOSE_ADD_STUDENT_POPUP:
+            return {
+                ...state,
+                add_student_display: false,
+            }
+    
         case OPEN_STUDENT_POPUP:
-        return {
-            ...state,
-            student_popup_status: true,
-            student_popup_target: action.payload
-        }
+            return {
+                ...state,
+                student_popup_status: true,
+                student_popup_target: action.payload
+            }
 
         case CLOSE_STUDENT_POPUP:
-        return {
-            ...state,
-            student_popup_status: false
-        }
+            return {
+                ...state,
+                student_popup_status: false
+            }
 
         default: return state;
     }

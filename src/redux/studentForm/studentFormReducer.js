@@ -1,24 +1,21 @@
-import { ADD_STUDENT } from "./studentFormTypes";
+import { CLEAR_STUDENTFORM } from "./studentFormTypes";
 
 
 const initialState = {
     name: '',
     birthday: '',
     address: '',
-    zipCode: '',
+    zipcode: '',
     city: '',
     phone: '',
     email: '',
-    submitStatus: false
 }
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-
-        case ADD_STUDENT:
+        case CLEAR_STUDENTFORM:
             return {
-                ...state,
-                submitStatus: true
+                ...initialState
             }
 
         default: return state;

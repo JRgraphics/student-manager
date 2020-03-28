@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
+import { reset, destroy } from 'redux-form';
 import { Form, Control, Errors } from 'react-redux-form';
-import { addStudent } from '../../redux';
+import { addStudent, clearStudentForm } from '../../redux';
 
 import {validation} from './Validation.js';
 import StudentFormInput from './StudentFormInput';
 
-function StudentForm() {
+function StudentForm({studentData, studentFormData}) {
     const dispatch = useDispatch();
     
-    return (
-        <Form className="col-11 mx-auto" model="studentForm" onSubmit={() => dispatch(addStudent())}>
+    return studentData && studentData.add_student_display ? (
+        <Form className="col-11 mx-auto" model="studentForm" onSubmit={() => dispatch(addStudent(studentFormData))}>
             <div className="row">
                 <StudentFormInput id={'studentForm.name'} label={'Name:'}
                 errors={validation.errors.name}
@@ -27,9 +28,9 @@ function StudentForm() {
                     errors={validation.errors.address}
                     errorMessages={validation.errorMessages.address}
                 />
-                <StudentFormInput id={'studentForm.zipCode'} label={'Zipcode:'}
-                    errors={validation.errors.zipCode}
-                    errorMessages={validation.errorMessages.zipCode}
+                <StudentFormInput id={'studentForm.zipcode'} label={'Zipcode:'}
+                    errors={validation.errors.zipcode}
+                    errorMessages={validation.errorMessages.zipcode}
                 />
                 <StudentFormInput id={'studentForm.city'} label={'City:'}
                     errors={validation.errors.city}
@@ -51,8 +52,26 @@ function StudentForm() {
             <button type="submit">
                 Add Student
             </button>
+            <Control.reset model="studentForm" type="reset">
+                Reset
+            </Control.reset>
       </Form>
+    ) : (
+        <div style={{display: "none"}}></div>
     )
 }
 
-export default StudentForm
+const mapStateToProps = state => {
+    return {
+        studentData: state.student,
+        studentFormData: state.studentForm
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentForm)

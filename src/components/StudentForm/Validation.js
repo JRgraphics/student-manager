@@ -6,7 +6,7 @@ export const validation =
                     name: {required: (val) => !val.length},
                     birthday: {required: (val) => !val.length},
                     address: {required: (val) => !val.length},
-                    zipCode: {required: (val) => !val.length},
+                    zipcode: {required: (val) => !val.length},
                     city: {required: (val) => !val.length},
                     phone: {required: (val) => !val.length},
                     email: {required: (val) => !val.length, isEmail: (val) => !validation.regex.email.test(String(val).toLowerCase()) && !!val.length}
@@ -17,7 +17,7 @@ export const validation =
                     name: {required: 'Please provide a name.'},
                     birthday: {required: 'Please provide a birthday.'},
                     address: {required: 'Please provide an address.'},
-                    zipCode: {required: 'Please provide a zipcode.'},
+                    zipcode: {required: 'Please provide a zipcode.'},
                     city: {required: 'Please provide a city.'},
                     phone: {required: 'Please provide a phonenumber.'},
                     email: {

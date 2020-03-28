@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { fetchStudents, searchStudent, fetchCourses } from '../../redux';
+import { fetchStudents, searchStudent, fetchCourses, setAddStudentPopup } from '../../redux';
 import './StudentTable.sass';
 import StudentTableItem from './StudentTableItem';
 
@@ -36,6 +36,8 @@ function StudentTable({ studentData, fetchStudents, fetchCourses}) {
                      }
                 </tbody>
             </table>
+            <button onClick={() => dispatch(setAddStudentPopup(true))}>ADD STUDENT</button>
+            <button onClick={() => dispatch(setAddStudentPopup(false))}>CLOSE FORM</button>
         </div>
     )
 }

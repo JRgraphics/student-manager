@@ -7,6 +7,7 @@ function StudentFormInput(props) {
             <label htmlFor={props.id}>{props.label}</label><br />
             <Control.text model={props.id} id={props.id} errors={props.errors}
             validateOn="change"
+            defaultValue=""
             />
             <Errors
                 model={props.id} messages={props.errorMessages}
