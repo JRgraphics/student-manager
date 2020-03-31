@@ -133,3 +133,42 @@ const closeStudentPopup = () => {
         type: CLOSE_STUDENT_POPUP
     }
 }
+
+export const addStudentsCourse = (student, courseId) => {
+    return (dispatch) => {
+        student.courses.push(courseId);
+        console.log(student);
+        dispatch(addStudentRequest());
+        // TODO: Change to take argument
+        axios.put('http://localhost:3000/students/' + student.id, student)
+        .then(response => {
+            console.log(response.data);
+            dispatch(fetchStudents());
+        })
+        .catch(error => {
+            const errorMsg = error.message;
+            dispatch(addStudentError(errorMsg));
+        })
+    }
+}
+
+export const deleteStudentsCourse = (student, courseId) => {
+    return (dispatch) => {
+        const index = student.courses.indexOf(courseId);
+        if (index > -1) {
+            student.courses.splice(index, 1);
+        }
+        console.log(student);
+        dispatch(addStudentRequest());
+        // TODO: Change to take argument
+        axios.put('http://localhost:3000/students/' + student.id, student)
+        .then(response => {
+            console.log(response.data);
+            dispatch(fetchStudents());
+        })
+        .catch(error => {
+            const errorMsg = error.message;
+            dispatch(addStudentError(errorMsg));
+        })
+    }
+}
