@@ -1,5 +1,6 @@
 import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, FETCH_STUDENT_ERROR,
     ADD_STUDENT_REQUEST, ADD_STUDENT_SUCCESS, ADD_STUDENT_ERROR,
+    UPDATE_STUDENTDATA_REQUEST, UPDATE_STUDENTDATA_SUCCESS, UPDATE_STUDENTDATA_ERROR,
      SEARCH_STUDENT, OPEN_ADD_STUDENT_POPUP, CLOSE_ADD_STUDENT_POPUP, OPEN_STUDENT_POPUP, CLOSE_STUDENT_POPUP } from "./studentTypes";
 
 const initialState = {
@@ -11,7 +12,11 @@ const initialState = {
     student_popup_target: {},
     add_student_display: false,
     add_student_loading: false,
-    add_student_error: ''
+    add_student_error: '',
+    update_student_data: {
+        loading: false,
+        error: ''
+    }
 }
 
 const reducer = (state = initialState, action) => {
@@ -56,6 +61,31 @@ const reducer = (state = initialState, action) => {
                 add_student_loading: false,
                 add_student_error: action.payload
             }
+
+        case UPDATE_STUDENTDATA_REQUEST:
+            return {
+                ...state,
+                update_student_data: {
+                    loading: true
+                }
+            }
+
+        case UPDATE_STUDENTDATA_SUCCESS:
+            return {
+                ...state,
+                update_student_data: {
+                    loading: false
+                }
+            }
+
+        case UPDATE_STUDENTDATA_ERROR:
+            return {
+                ...state,
+                update_student_data: {
+                    loading: false,
+                    error: action.payload
+                }
+        }
 
         case SEARCH_STUDENT:
             return {

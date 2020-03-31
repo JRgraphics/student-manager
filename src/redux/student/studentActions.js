@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, FETCH_STUDENT_ERROR,
     ADD_STUDENT_REQUEST, ADD_STUDENT_SUCCESS, ADD_STUDENT_ERROR,
+    UPDATE_STUDENTDATA_REQUEST, UPDATE_STUDENTDATA_SUCCESS, UPDATE_STUDENTDATA_ERROR,
      SEARCH_STUDENT, OPEN_STUDENT_POPUP, CLOSE_STUDENT_POPUP, OPEN_ADD_STUDENT_POPUP, CLOSE_ADD_STUDENT_POPUP
 } from "./studentTypes";
 import { clearStudentForm } from '../studentForm/studentFormActions';
@@ -134,20 +135,40 @@ const closeStudentPopup = () => {
     }
 }
 
+export const updateStudentdataRequest = () => {
+    return {
+        type: UPDATE_STUDENTDATA_REQUEST
+    }
+}
+
+const updateStudentdataSuccess = () => {
+    return {
+        type: UPDATE_STUDENTDATA_SUCCESS,
+    }
+}
+
+const updateStudentdataError = error => {
+    return {
+        type: UPDATE_STUDENTDATA_ERROR ,
+        payload: error
+    }
+}
+
 export const addStudentsCourse = (student, courseId) => {
     return (dispatch) => {
         student.courses.push(courseId);
         console.log(student);
-        dispatch(addStudentRequest());
+        dispatch(updateStudentdataRequest());
         // TODO: Change to take argument
         axios.put('http://localhost:3000/students/' + student.id, student)
         .then(response => {
             console.log(response.data);
             dispatch(fetchStudents());
+            dispatch(updateStudentdataSuccess());
         })
         .catch(error => {
             const errorMsg = error.message;
-            dispatch(addStudentError(errorMsg));
+            dispatch(updateStudentdataError(errorMsg));
         })
     }
 }
@@ -159,16 +180,18 @@ export const deleteStudentsCourse = (student, courseId) => {
             student.courses.splice(index, 1);
         }
         console.log(student);
-        dispatch(addStudentRequest());
+        dispatch(updateStudentdataRequest());
         // TODO: Change to take argument
         axios.put('http://localhost:3000/students/' + student.id, student)
         .then(response => {
             console.log(response.data);
             dispatch(fetchStudents());
+            dispatch(updateStudentdataSuccess());
         })
         .catch(error => {
             const errorMsg = error.message;
             dispatch(addStudentError(errorMsg));
+            dispatch(updateStudentdataError(errorMsg));
         })
     }
 }
