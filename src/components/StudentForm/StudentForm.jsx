@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, connect } from 'react-redux';
-import { reset, destroy } from 'redux-form';
-import { Form, Control, Errors } from 'react-redux-form';
-import { addStudent, clearStudentForm } from '../../redux';
+import { Form, Control} from 'react-redux-form';
+import { addStudent } from '../../redux';
 
 import {validation} from './Validation.js';
 import StudentFormInput from './StudentFormInput';
@@ -57,7 +56,7 @@ function StudentForm({studentData, studentFormData}) {
             </Control.reset>
       </Form>
     ) : (
-        <div style={{display: "none"}}></div>
+        null
     )
 }
 

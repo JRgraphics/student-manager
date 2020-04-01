@@ -3,19 +3,16 @@
     position: fixed
     height: 100vh
     width: 100vw
+    background-color: #ffffff
+    overflow: hidden
     top: 0
     left: 0
     z-index: 999
-    .student-popup__background
-        position: absolute
-        height: 100%
-        width: 100%
-        background-color: rgba(0, 0, 0, 0.4)
+    transition: 0.5s ease-out 0s transform
     .student-popup__container
         position: relative
         width: 60%
         margin: 0 auto
-        background-color: #fff
     .student-popup__close_button
         position: absolute
         right: 0
@@ -25,3 +22,9 @@
 
 .course-table__icon
     height: 20px
+
+.student-popup-active
+    animation: 0.5s ease-out forwards left-in
+
+.student-popup-deactive
+    animation: 0.5s ease-out forwards left-out

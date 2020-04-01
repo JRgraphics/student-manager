@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import StudentTable from '../../StudentTable/StudentTable';
 import StudentForm from '../../StudentForm/StudentForm';
-import StudentPopup from '../StudentPopup/StudentPopup';
+import StudentInfo from '../StudentInfo/StudentInfo';
 
 function Home() {
     return (
         <div>
-            <StudentPopup />
+            <StudentInfo />
             <StudentTable />
             <StudentForm />
         </div>

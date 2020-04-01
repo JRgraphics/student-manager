@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Control, Errors } from 'react-redux-form';
+import { Control, Errors } from 'react-redux-form';
 
 function StudentFormInput(props) {
     return (
