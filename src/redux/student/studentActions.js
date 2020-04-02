@@ -72,7 +72,8 @@ export const addStudent = student => {
             console.log(response.data);
             dispatch(addStudentSuccess());
             dispatch(clearStudentForm());
-            dispatch(actions.reset('studentForm')); 
+            dispatch(actions.reset('studentForm'));
+            dispatch(setAddStudentPopup(false));
             dispatch(fetchStudents());
         })
         .catch(error => {
@@ -112,26 +113,38 @@ const closeAddStudentPopup = () => {
     }
 }
 
-export const setStudentPopup = (value, student) => {
+const setStudentInfoPopup = (value, student) => {
     return dispatch => {
-        if ( value ) {
-            dispatch(openStudentPopup(student));
+        if ( value && student && student !== {} ) {
+            dispatch(openStudentInfoPopup(student));
         } else {
-            dispatch(closeStudentPopup());
+            dispatch(closeStudentInfoPopup());
         }
     }
 }
 
-const openStudentPopup = student => {
+const openStudentInfoPopup = student => {
     return {
         type: OPEN_STUDENT_POPUP,
         payload: student
     }
 }
 
-const closeStudentPopup = () => {
+const closeStudentInfoPopup = () => {
     return {
         type: CLOSE_STUDENT_POPUP
+    }
+}
+
+export const setStudentPopup = (caller, value, student) => {
+    return dispatch => {
+        if ( caller === "student_form" ) {
+            dispatch(setAddStudentPopup(value));
+        } else if ( caller === "student_info" ) {
+            dispatch(setStudentInfoPopup(value, student))
+        } else {
+            // No statement
+        }
     }
 }
 

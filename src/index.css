@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.student-form__input {
+  width: 100%;
+}
+
 @keyframes left-in {
   0% {
     transform: translateX(-100%);

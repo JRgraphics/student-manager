@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch, connect } from 'react-redux';
 import { Form, Control} from 'react-redux-form';
 import { addStudent } from '../../redux';
 
 import {validation} from './Validation.js';
 import StudentFormInput from './StudentFormInput';
+import ClosePopupButton from '../ClosePopupButton';
 
 function StudentForm({studentData, studentFormData}) {
     const dispatch = useDispatch();
-    
+    const studentform_popup_ref = useRef(null);
     return studentData && studentData.add_student_display ? (
+        <div ref={studentform_popup_ref} className="student-popup student-popup-active">
+        <ClosePopupButton popup_ref={studentform_popup_ref} caller={"student_form"} />
         <Form className="col-11 mx-auto" model="studentForm" onSubmit={() => dispatch(addStudent(studentFormData))}>
             <div className="row">
                 <StudentFormInput id={'studentForm.name'} label={'Name:'}
@@ -55,6 +58,7 @@ function StudentForm({studentData, studentFormData}) {
                 Reset
             </Control.reset>
       </Form>
+      </div>
     ) : (
         null
     )

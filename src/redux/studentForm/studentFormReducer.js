@@ -9,6 +9,7 @@ const initialState = {
     city: '',
     phone: '',
     email: '',
+    courses: []
 }
 
 const reducer = (state = initialState, action) => {

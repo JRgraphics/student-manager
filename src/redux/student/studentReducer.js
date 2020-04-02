@@ -52,7 +52,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 add_student_loading: false,
-                add_student_display: false,  
             }
         
         case ADD_STUDENT_ERROR:

@@ -1,3 +1,5 @@
+.student-table
+    max-height: 100vh
 
 table 
     border: 1px solid #ccc
@@ -33,7 +35,7 @@ table
         caption 
             font-size: 1.3em
     
-        .thead 
+        .thead
             position: absolute
             height: 1px
             width: 1px
@@ -43,22 +45,22 @@ table
             padding: 0
             overflow: hidden
 
-        tr 
+        .student-table__row
             display: block
             border-bottom: 4px solid #fff
         
-        td 
+        .student-table__row__item
             display: block
             border-bottom: 1px solid #fff
             font-size: .8em
             text-align: right
     
-        td::before 
+        .student-table__row__item::before 
             content: attr(data-label)
             float: left
             font-weight: bold
             text-transform: uppercase
     
-        td:last-child 
+        .student-table__row__item:last-child 
             border-bottom: 0
     

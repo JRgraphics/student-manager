@@ -14,14 +14,19 @@ function StudentTable({ studentData, fetchStudents, fetchCourses}) {
     const headers = ["Name", "Address", "Email", "Phone", "Birthday"];
     return studentData.loading ? (
         <h2>Loading...</h2>
+        
     ) : studentData.error ? (
         <h2>{studentData.error}</h2>
+
     ) : (
-        <div>
+        <div className={"student-table " + 
+        (studentData.student_popup_status || studentData.add_student_display ? "overflow-y-hidden" : "")
+        }>
             <h2>Students</h2>
             <input type="text" placeholder="Search.." onChange={e => {
                 dispatch(searchStudent(e.target.value));
                 }} />
+            <button onClick={() => dispatch(setAddStudentPopup(true))}>ADD STUDENT</button>
             <table className="table table-dark table-hover p-0 m-0">
                 <tbody>
                     <tr className="thead">
@@ -36,8 +41,6 @@ function StudentTable({ studentData, fetchStudents, fetchCourses}) {
                      }
                 </tbody>
             </table>
-            <button onClick={() => dispatch(setAddStudentPopup(true))}>ADD STUDENT</button>
-            <button onClick={() => dispatch(setAddStudentPopup(false))}>CLOSE FORM</button>
         </div>
     )
 }

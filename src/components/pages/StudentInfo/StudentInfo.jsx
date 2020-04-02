@@ -11,12 +11,15 @@ function StudentInfo({ studentData, courseData, selected_student }) {
     return studentData && courseData && studentData.student_popup_status && selected_student !== {} ? (
         <div ref={student_popup_ref} className="student-popup student-popup-active">
             <div className="student-popup__container">
-                <ClosePopupButton popup_ref={student_popup_ref} />
+                <ClosePopupButton popup_ref={student_popup_ref} caller={"student_info"} />
                 <StudentInfoContent />
                 <h2>Courses</h2>
                 <h4>Attended courses:</h4>
                 <table>
                     <tbody>
+                        <thead>
+                            <td></td><td></td>
+                        </thead>
                     {selected_student.courses && selected_student.courses.map((value) => {
                         const courseRender = courseData.course.find(item => item.id === value);
                         if (courseRender !== undefined) {
@@ -36,7 +39,7 @@ function StudentInfo({ studentData, courseData, selected_student }) {
                 <table>
                     <tbody>
                     {courseData.course.map((item) => {
-                        if (!selected_student.courses.includes(item.id)) {
+                        if ( !selected_student.courses.includes(item.id)) {
                             return (
                                 <CourseItem course={item} type={"add"} />
                             )
