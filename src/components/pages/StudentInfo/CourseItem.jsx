@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 
 function CourseItem(props) {
     return (
-        <tr>
+        <tr className="fade-in">
             <td>
             {props.course.name + " "}
             (

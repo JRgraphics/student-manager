@@ -11,7 +11,7 @@ function StudentForm({studentData, studentFormData}) {
     const dispatch = useDispatch();
     const studentform_popup_ref = useRef(null);
     return studentData && studentData.add_student_display ? (
-        <div ref={studentform_popup_ref} className="student-popup student-popup-active">
+        <div ref={studentform_popup_ref} className="student-popup student-popup--active">
         <ClosePopupButton popup_ref={studentform_popup_ref} caller={"student_form"} />
         <Form className="col-11 mx-auto" model="studentForm" onSubmit={() => dispatch(addStudent(studentFormData))}>
             <div className="row">

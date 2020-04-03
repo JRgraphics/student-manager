@@ -20,7 +20,7 @@ function StudentTable({ studentData, fetchStudents, fetchCourses}) {
 
     ) : (
         <div className={"student-table " + 
-        (studentData.student_popup_status || studentData.add_student_display ? "overflow-y-hidden" : "")
+        (studentData.student_popup_status || studentData.add_student_display ? "overflow-y--hidden" : "")
         }>
             <h2>Students</h2>
             <input type="text" placeholder="Search.." onChange={e => {

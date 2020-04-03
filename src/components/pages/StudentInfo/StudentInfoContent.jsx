@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 function StudentInfoContent({selected_student}) {
     return (
         <div>
-            <h2>{selected_student.name}(
+            <h2 className="h2">{selected_student.name}(
                     <Moment format="D.M.YYYY" date={selected_student.birthday}/>
                     )
             </h2>
