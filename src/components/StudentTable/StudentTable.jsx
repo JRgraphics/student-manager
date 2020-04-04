@@ -8,6 +8,7 @@ function StudentTable({ studentData, fetchStudents, fetchCourses}) {
     useEffect(() => {
         fetchStudents();
         fetchCourses();
+        // eslint-disable-next-line
     }, []);
     const dispatch = useDispatch();
 
@@ -19,7 +20,7 @@ function StudentTable({ studentData, fetchStudents, fetchCourses}) {
         <h2>{studentData.error}</h2>
 
     ) : (
-        <div className={"student-table " + 
+        <div className={"student-table-main " + 
         (studentData.student_popup_status || studentData.add_student_display ? "overflow-y--hidden" : "")
         }>
             <h2>Students</h2>
@@ -27,9 +28,9 @@ function StudentTable({ studentData, fetchStudents, fetchCourses}) {
                 dispatch(searchStudent(e.target.value));
                 }} />
             <button onClick={() => dispatch(setAddStudentPopup(true))}>ADD STUDENT</button>
-            <table className="table table-dark table-hover p-0 m-0">
+            <table className="student-table table table-hover p-0 m-0">
                 <tbody>
-                    <tr className="thead">
+                    <tr className="student-table__header thead-dark">
                         {headers.map(header => <th scope="col">{header}</th> )}
                     </tr>
                     {

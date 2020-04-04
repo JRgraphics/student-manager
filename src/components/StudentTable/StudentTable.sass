@@ -1,7 +1,12 @@
-.student-table
+/*------------------
+ Style settings for studentTable component,
+    including the responsive design for table for mobile users
+    -------------------------*/
+
+.student-table-main
     max-height: 100vh
 
-table 
+.student-table 
     border: 1px solid #ccc
     border-collapse: collapse
     table-layout: fixed
@@ -16,26 +21,28 @@ table
 
     td 
         font-size: .75em
+    
+.student-table__item-row:hover
+    cursor: pointer
 
-@media screen and (min-width: 801px)
-    table
-        td 
-            font-size: .8em
-
-@media screen and (min-width: 701px) and (max-width: 800px) 
+@media screen and (min-width: 768px)
     table 
         td 
             font-size: .7em
 
+@media screen and (min-width: 992px)
+    table
+        td 
+            font-size: .8em
 
-@media screen and (max-width: 700px) 
-    table 
+@media screen and (max-width: 767px) 
+    .student-table 
         border: 0
     
-        caption 
+        @at-root caption 
             font-size: 1.3em
     
-        .thead
+        @at-root .student-table__header
             position: absolute
             height: 1px
             width: 1px
@@ -45,22 +52,22 @@ table
             padding: 0
             overflow: hidden
 
-        .student-table__item-row
+        @at-root .student-table__item-row
             display: block
             border-bottom: 4px solid #fff
         
-        .item-row__item
+        @at-root .item-row__item
             display: block
             border-bottom: 1px solid #fff
             font-size: .8em
             text-align: right
     
-        .item-row__item::before 
+        @at-root .item-row__item::before 
             content: attr(data-label)
             float: left
             font-weight: bold
             text-transform: uppercase
     
-        .student-table__row__item:last-child 
+        @at-root .item-row__item:last-child 
             border-bottom: 0
     

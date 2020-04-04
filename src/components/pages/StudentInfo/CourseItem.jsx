@@ -6,14 +6,16 @@ import Moment from 'react-moment';
 function CourseItem(props) {
     return (
         <tr className="fade-in">
-            <td>
-            {props.course.name + " "}
-            (
-            <Moment format="D.M.YYYY" date={props.course.startdate}/> -  
-            <Moment format="D.M.YYYY" date={props.course.enddate}/>
-            )
+            <td className="align-middle">
+                <p className="m-0">
+                {props.course.name + " "}
+                (
+                <Moment format="D.M.YYYY" date={props.course.startdate}/> -  
+                <Moment format="D.M.YYYY" date={props.course.enddate}/>
+                )
+                </p>
             </td>
-            <td>
+            <td className="align-middle text-right">
                 <CourseItemButton type={props.type} course={props.course} />
             </td>
         </tr>

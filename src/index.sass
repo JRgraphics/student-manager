@@ -1,36 +1,87 @@
-$enable-responsive-font-sizes: true;
+$enable-responsive-font-sizes: true
 
 @import "bootstrap";
 
 
+.overflow-y--hidden
+    overflow-y: hidden
+
+.content-separator-line
+    height: 0.5px
+    background-color: #999
+    margin: auto
+/*------------------
+ Style settings for popup components
+    and their transitions
+    -------------------------*/
 .student-popup
     position: fixed
     height: 100vh
     width: 100vw
-    background-color: #ffffff
     overflow: hidden
     top: 0
     left: 0
     z-index: 999
     transition: 0.5s ease-out 0s transform
+    background-color: #fff
+    color: #000
     .student-popup__container
         position: relative
         margin: 0 auto
     .student-popup__close_button
         position: absolute
         right: 0
+        z-index: 999
     .close_button__icon
         height: 30px
         width: 30px
-
-.course-table__icon
-    height: 20px
-
 .student-popup--active
     animation: 0.5s ease-out forwards left-in
 
 .student-popup--deactive
     animation: 0.5s ease-out forwards left-out
 
-.overflow-y--hidden
-    overflow-y: hidden
+.course-table__icon
+    height: 20px
+
+/*------------------
+ Icon and button styling settings
+    -------------------------*/
+.btn
+    transition: transform 0.2s ease-in-out
+
+.btn:active
+    transform: scale(0.7)
+
+/*------------------
+ Keyframe animation
+    -------------------------*/
+
+.fade-in 
+  animation: fade-in 0.5s ease-out
+
+/*------------------
+ Keyframe animations
+    -------------------------*/
+
+@keyframes left-in 
+  0% 
+    transform: translateX(-100%)
+  
+  100% 
+    transform: translateX(0%)
+  
+@keyframes left-out 
+  0% 
+    transform: translateX(0%)
+  
+  100% 
+    transform: translateX(-100%)
+  
+@keyframes fade-in 
+  0% 
+    opacity: 0
+  
+  100% 
+    opacity: 1
+  
