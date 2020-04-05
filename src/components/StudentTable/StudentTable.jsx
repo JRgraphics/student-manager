@@ -24,7 +24,7 @@ function StudentTable({ studentData, fetchStudents, fetchCourses}) {
         (studentData.student_popup_status || studentData.add_student_display ? "overflow-y--hidden" : "")
         }>
             <h2>Students</h2>
-            <input type="text" placeholder="Search.." onChange={e => {
+            <input type="text" placeholder="Search.." defaultValue={studentData.search_term} onChange={e => {
                 dispatch(searchStudent(e.target.value));
                 }} />
             <button onClick={() => dispatch(setAddStudentPopup(true))}>ADD STUDENT</button>
