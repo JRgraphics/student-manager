@@ -7,7 +7,7 @@ In the project directory, you can run:
 ### `json-server --watch db.json`
 
 Allows you to access the database when running locally
-in [http://localhost:3000]
+in [http://localhost:3000](http://localhost:3000)
 
 ### `npm start`
 
