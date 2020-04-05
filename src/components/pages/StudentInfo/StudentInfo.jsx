@@ -14,43 +14,44 @@ function StudentInfo({ studentData, courseData, selected_student }) {
                 <ClosePopupButton popup_ref={student_popup_ref} caller={"student_info"} />
                 <StudentInfoContent />
                 <div>
-                <h2>Courses</h2>
-                <h4>Attended courses:</h4>
-                <table className="table table-hover mx-auto">
-                    <tbody>
+                    <h2 className="mx-2">Courses</h2>
+                    
+                    <h5 className="mx-2">Attended courses:</h5>
+                    <table className="table table-hover mx-auto">
+                        <tbody>
+                        {selected_student.courses && selected_student.courses.map((value) => {
+                            const courseRender = courseData.course.find(item => item.id === value);
+                            if (courseRender !== undefined) {
+                                return (
+                                    <CourseItem course={courseRender} type={"delete"} />
+                                )
+                            } else {
+                                return (
+                                    null
+                                )
+                            }
+                        }
+                        )}
+                        </tbody>
+                    </table>
 
-                    {selected_student.courses && selected_student.courses.map((value) => {
-                        const courseRender = courseData.course.find(item => item.id === value);
-                        if (courseRender !== undefined) {
-                            return (
-                                <CourseItem course={courseRender} type={"delete"} />
-                            )
-                        } else {
-                            return (
-                                null
-                            )
+                    <h5 className="mx-2">Available courses:</h5>
+                    <table className="table table-hover mx-auto">
+                        <tbody>
+                        {courseData.course.map((item) => {
+                            if ( !selected_student.courses.includes(item.id)) {
+                                return (
+                                    <CourseItem course={item} type={"add"} />
+                                )
+                            } else {
+                                return (
+                                    null
+                                )
+                            }
                         }
-                    }
-                    )}
-                    </tbody>
-                </table>
-                <h4>Available courses:</h4>
-                <table className="table table-hover mx-auto">
-                    <tbody>
-                    {courseData.course.map((item) => {
-                        if ( !selected_student.courses.includes(item.id)) {
-                            return (
-                                <CourseItem course={item} type={"add"} />
-                            )
-                        } else {
-                            return (
-                                null
-                            )
-                        }
-                    }
-                    )}
-                    </tbody>
-                </table>
+                        )}
+                        </tbody>
+                    </table>
             </div>
             </div>
         </div>

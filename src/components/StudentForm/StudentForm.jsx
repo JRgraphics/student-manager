@@ -10,11 +10,14 @@ import ClosePopupButton from '../ClosePopupButton';
 function StudentForm({studentData, studentFormData}) {
     const dispatch = useDispatch();
     const studentform_popup_ref = useRef(null);
+    
     return studentData && studentData.add_student_display ? (
         <div ref={studentform_popup_ref} className="student-popup student-popup--active">
         <ClosePopupButton popup_ref={studentform_popup_ref} caller={"student_form"} />
-        <Form className="col-11 mx-auto" model="studentForm" onSubmit={() => dispatch(addStudent(studentFormData))}>
+        <h2 className="student-form__main-title text-center py-3">ADD STUDENT</h2>
+        <Form className="col-11 mx-auto my-4" model="studentForm" onSubmit={() => dispatch(addStudent(studentFormData))}>
             <div className="row">
+
                 <StudentFormInput id={'studentForm.name'} label={'Name:'}
                 errors={validation.errors.name}
                 errorMessages={validation.errorMessages.name}
@@ -51,12 +54,14 @@ function StudentForm({studentData, studentFormData}) {
                 />
             </div>
 
-            <button type="submit">
+            <button className="btn btn-primary" type="submit">
                 Add Student
             </button>
-            <Control.reset model="studentForm" type="reset">
+            
+            <Control.reset className="btn btn-outline-secondary" model="studentForm" type="reset">
                 Reset
             </Control.reset>
+
       </Form>
       </div>
     ) : (

@@ -2,10 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 
-import profile_icon from '../../../assets/images/profile.png';
 import student_profile_pic from '../../../assets/images/student_1.png';
-import phone_icon from '../../../assets/images/phone.png';
-import email_icon from '../../../assets/images/email.png';
 import StudentInfoTableItem from './StudentInfoTableItem';
 
 function StudentInfoContent({selected_student}) {
@@ -13,8 +10,8 @@ function StudentInfoContent({selected_student}) {
         <div className="student-info-content text-center">
             <div className="student-info-content__top-container pb-2">
                 <div className="student-info-content__background"></div>
-                <img className="col-4 col-sm-3 col-md-2 student-info-content__icon mt-4 p-0" src={student_profile_pic} alt={"profile"} />
-                <h2 className="h2">{selected_student.name}</h2>
+                <img className="student-info-content__icon col-4 col-sm-3 col-md-2 mt-4 p-0" src={student_profile_pic} alt={"profile"} />
+                <h2>{selected_student.name}</h2>
                 <h6 className="font-italic text-secondary">-<Moment format="D.M.YYYY" date={selected_student.birthday}/>-</h6>
             </div>
 

@@ -12,6 +12,7 @@
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-addons-css-transition-group": "^15.6.2",
+    "react-app-polyfill": "^1.0.6",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.13.1",
     "react-moment": "^0.9.7",
@@ -43,7 +44,8 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "last 1 edge version"
     ]
   }
 }

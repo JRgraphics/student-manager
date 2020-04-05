@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { fetchStudents, searchStudent, fetchCourses, setAddStudentPopup } from '../../redux';
 import './StudentTable.sass';
+
 import StudentTableItem from './StudentTableItem';
 
 function StudentTable({ studentData, fetchStudents, fetchCourses}) {
@@ -11,8 +12,8 @@ function StudentTable({ studentData, fetchStudents, fetchCourses}) {
         // eslint-disable-next-line
     }, []);
     const dispatch = useDispatch();
-
     const headers = ["Name", "Address", "Email", "Phone", "Birthday"];
+
     return studentData.loading ? (
         <h2>Loading...</h2>
         
@@ -23,11 +24,15 @@ function StudentTable({ studentData, fetchStudents, fetchCourses}) {
         <div className={"student-table-main " + 
         (studentData.student_popup_status || studentData.add_student_display ? "overflow-y--hidden" : "")
         }>
-            <h2>Students</h2>
-            <input type="text" placeholder="Search.." defaultValue={studentData.search_term} onChange={e => {
-                dispatch(searchStudent(e.target.value));
-                }} />
-            <button onClick={() => dispatch(setAddStudentPopup(true))}>ADD STUDENT</button>
+            <h2 className="mx-1 my-3">Students</h2>
+
+            <div className="row col-12">
+                <input type="text" placeholder="Search.." defaultValue={studentData.search_term} onChange={e => {
+                    dispatch(searchStudent(e.target.value));
+                    }} />
+                <button className="btn btn-primary" onClick={() => dispatch(setAddStudentPopup(true))}>ADD STUDENT</button>
+            </div>
+            
             <table className="student-table table table-hover p-0 m-0">
                 <tbody>
                     <tr className="student-table__header thead-dark">
