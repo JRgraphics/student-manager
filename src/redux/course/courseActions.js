@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { FETCH_COURSE_REQUEST, FETCH_COURSE_SUCCESS, FETCH_COURSE_ERROR } from "./courseTypes"
 
+/*------------------
+ Actions which are dispatched based on the status of the result of the related axios method
+    in fetchCourses
+    -------------------------*/
+
 export const fetchCoursesRequest = () => {
     return {
         type: FETCH_COURSE_REQUEST
@@ -20,6 +25,10 @@ const fetchCoursesError = error => {
         payload: error
     }
 }
+
+/*------------------
+ Action which fetched course data from the database
+    -------------------------*/
 
 export const fetchCourses = () => {
     return (dispatch) => {

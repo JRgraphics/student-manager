@@ -1,5 +1,11 @@
 import store from '../../redux/store';
 
+/*------------------
+ Function which checks current student array from Redux store and compares
+    studentForm's name field's input value to existing names. Returns true if name already
+        exists in the store
+    -------------------------*/
+
 const checkIfUserExists = (val) => {
     const current_students = store.getState().student.student;
     for (let i=0; i < current_students.length; ++i) {
@@ -10,6 +16,10 @@ const checkIfUserExists = (val) => {
     }
     return false;
 }
+
+/*------------------
+ Validation related settings for studentForm -model
+    -------------------------*/
 
 export const validation =
         {

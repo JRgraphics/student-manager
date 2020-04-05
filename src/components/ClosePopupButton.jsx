@@ -11,7 +11,7 @@ function ClosePopupButton(props) {
             props.popup_ref.current.classList.add('student-popup--deactive');
             setTimeout(() => {
                 dispatch(setStudentPopup(props.caller, false, {}))
-            }, 500);
+            }, 500); // 500ms timeout added for the popup-related transitions
             }}>
             <img className="close_button__icon" src={delete_icon} alt={"close"} />
         </button>

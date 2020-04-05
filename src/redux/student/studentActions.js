@@ -7,6 +7,11 @@ import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_SUCCESS, FETCH_STUDENT_ERROR,
 import { clearStudentForm } from '../studentForm/studentFormActions';
 import { actions } from 'react-redux-form';
 
+/*------------------
+ Actions which are dispatched based on the status of the result of the related axios method
+    in fetchStudents
+    -------------------------*/
+
 export const fetchStudentsRequest = () => {
     return {
         type: FETCH_STUDENT_REQUEST
@@ -27,6 +32,10 @@ const fetchStudentsError = error => {
     }
 }
 
+/*------------------
+ Action which fetched student data from the database
+    -------------------------*/
+
 export const fetchStudents = () => {
     return (dispatch) => {
         dispatch(fetchStudentsRequest());
@@ -42,6 +51,11 @@ export const fetchStudents = () => {
         })
     }
 }
+
+/*------------------
+ Actions which are dispatched based on the status of the result of the related axios method
+    in addStudent
+    -------------------------*/
 
 export const addStudentRequest = () => {
     return {
@@ -63,6 +77,10 @@ const addStudentError = error => {
     }
 }
 
+/*------------------
+ Action which adds new student to the database with appropriate values from studentForm
+    -------------------------*/
+
 export const addStudent = student => {
     return (dispatch) => {
         dispatch(addStudentRequest());
@@ -83,12 +101,21 @@ export const addStudent = student => {
     }
 }
 
+/*------------------
+ Action for filtering presented data in the student-table
+    -------------------------*/
+
 export const searchStudent = term => {
     return {
         type: SEARCH_STUDENT,
         payload: term
     }
 }
+
+/*------------------
+ Action which dispatches appropriate actions based on the implemented values
+    to open or close student-form popup
+    -------------------------*/
 
 export const setAddStudentPopup = value => {
     return dispatch => {
@@ -100,6 +127,11 @@ export const setAddStudentPopup = value => {
         }
     }
 }
+
+/*------------------
+ Actions for opening and closing student-form popup,
+    which are dispatched by setAddStudentPopup
+    -------------------------*/
 
 const openAddStudentPopup = () => {
     return {
@@ -113,6 +145,11 @@ const closeAddStudentPopup = () => {
     }
 }
 
+/*------------------
+ Action which dispatches appropriate actions based on the implemented values
+    to open or close student-info popup
+    -------------------------*/
+
 const setStudentInfoPopup = (value, student) => {
     return dispatch => {
         if ( value && student && student !== {} ) {
@@ -122,6 +159,11 @@ const setStudentInfoPopup = (value, student) => {
         }
     }
 }
+
+/*------------------
+ Actions for opening and closing student-info popup,
+    which are dispatched by setStudentInfoPopup
+    -------------------------*/
 
 const openStudentInfoPopup = student => {
     return {
@@ -136,6 +178,11 @@ const closeStudentInfoPopup = () => {
     }
 }
 
+/*------------------
+ Action which dispatched appropriate actions to open or close popup-windows 
+    based on the implemented values
+    -------------------------*/
+
 export const setStudentPopup = (caller, value, student) => {
     return dispatch => {
         if ( caller === "student_form" ) {
@@ -147,6 +194,11 @@ export const setStudentPopup = (caller, value, student) => {
         }
     }
 }
+
+/*------------------
+ Actions which are dispatched based on the status of the result of the related axios method
+    in addStudentsCourse
+    -------------------------*/
 
 export const updateStudentdataRequest = () => {
     return {
@@ -166,6 +218,10 @@ const updateStudentdataError = error => {
         payload: error
     }
 }
+
+/*------------------
+ Actions which update existing student's course attendance status
+    -------------------------*/
 
 export const addStudentsCourse = (student, courseId) => {
     return (dispatch) => {
@@ -192,9 +248,7 @@ export const deleteStudentsCourse = (student, courseId) => {
         if (index > -1) {
             student.courses.splice(index, 1);
         }
-        console.log(student);
         dispatch(updateStudentdataRequest());
-        // TODO: Change to take argument
         axios.put('http://localhost:3000/students/' + student.id, student)
         .then(response => {
             console.log(response.data);

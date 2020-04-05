@@ -8,6 +8,7 @@ import StudentInfoTableItem from './StudentInfoTableItem';
 function StudentInfoContent({selected_student}) {
     return (
         <div className="student-info-content text-center">
+            
             <div className="student-info-content__top-container pb-2">
                 <div className="student-info-content__background"></div>
                 <img className="student-info-content__icon col-4 col-sm-3 col-md-2 mt-4 p-0" src={student_profile_pic} alt={"profile"} />

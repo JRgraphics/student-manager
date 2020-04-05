@@ -52,7 +52,7 @@ function StudentInfo({ studentData, courseData, selected_student }) {
                         )}
                         </tbody>
                     </table>
-            </div>
+                </div>
             </div>
         </div>
     ) : (
